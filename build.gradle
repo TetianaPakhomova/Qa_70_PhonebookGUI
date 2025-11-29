@@ -64,4 +64,7 @@ def registerTask(String taskName,String suitePath){
 
     }
 }
-registerTask('quick','src/test/resources/testng.xml')
+//registerTask('quick','src/test/resources/testng.xml')
+registerTask('regression','src/test/resources/regression.xml')
+registerTask('negative','src/test/resources/negative.xml')
+registerTask('smoky','src/test/resources/groups.xml')
