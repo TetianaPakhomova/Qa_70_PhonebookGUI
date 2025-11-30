@@ -15,46 +15,47 @@ dependencies {
     testImplementation("org.testng:testng:7.11.0")
 
     implementation("io.github.bonigarcia:webdrivermanager:6.3.3")
+
+    implementation("ch.qos.logback:logback-classic:1.5.15")
 }
 
 test {
     useTestNG()
-    if(project.hasProperty("browser")){
-        systemProperty 'browser',"${browser}"
+    if (project.hasProperty("browser")){
+        systemProperty'browser', "${browser}"
     }
 }
 
 task qa(type:Test){
-    //testClassesDirs = sourceSets.test.output.classesDirs
+    //testClassesDirs = sourceSets.test.output.classesDirs если не работает таска пробуем то что в коментах
     //classpath = sourceSets.test.runtimeClasspath
     useTestNG()
             {
                 suites'src/test/resources/testng.xml'
             }
-    if(project.hasProperty("browser")){
-        systemProperty 'browser',"${browser}"
+    if (project.hasProperty("browser")){
+        systemProperty'browser', "${browser}"
     }
+
 }
 
-//task qa1(type:Test){
-//testClassesDirs = sourceSets.test.output.classesDirs
-//classpath = sourceSets.test.runtimeClasspath
-//useTestNG()
-//{
-// suites'src/test/resources/regression.xml'
-//}
-//if(project.hasProperty("browser")){
-//  systemProperty 'browser',"${browser}"
-// }
-//}
+/*task qa1(type:Test){
+    useTestNG()
+            {
+                suites'src/test/resources/regression.xml'
+            }
+    if (project.hasProperty("browser")){
+        systemProperty'browser', "${browser}"
+    }
 
+}*/
 
 
 def registerTask(String taskName,String suitePath){
-//    testClassesDirs = sourceSets.test.output.classesDirs
-   // classpath = sourceSets.test.runtimeClasspath
 
     tasks.register(taskName,Test){
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
         useTestNG(){
             suites suitePath
         }
@@ -64,7 +65,6 @@ def registerTask(String taskName,String suitePath){
 
     }
 }
-//registerTask('quick','src/test/resources/testng.xml')
 registerTask('regression','src/test/resources/regression.xml')
 registerTask('negative','src/test/resources/negative.xml')
 registerTask('smoky','src/test/resources/groups.xml')

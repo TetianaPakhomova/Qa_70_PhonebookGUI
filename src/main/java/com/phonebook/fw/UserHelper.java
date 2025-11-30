@@ -16,19 +16,17 @@ public class UserHelper extends BaseHelper {
         return isElementPresent(By.xpath("//button[.='Sign Out']"));
     }
 
+    public void clickOnRegistrationButton() {
+        click(By.name("registration"));
+    }
+
     public void fillLoginRegisterForm(User user) {
         type(By.name("email"), user.getEmail());
-        //driver.findElement(By.name("email")).sendKeys("manuel67"+i+"@gmail.com");
-        //enter password
         type(By.name("password"), user.getPassword());
     }
 
     public void clickOnLoginLink() {
         click(By.cssSelector("[href='/login']"));
-    }
-
-    public void clickOnRegistrationButton() {
-        click(By.name("registration"));
     }
 
     public void clickOnLoginButton() {

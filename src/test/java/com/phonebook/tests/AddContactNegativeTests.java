@@ -11,9 +11,10 @@ import org.testng.annotations.Test;
 
 public class AddContactNegativeTests extends TestBase {
 
+
     @BeforeMethod
-    public void precondition(){
-        if(!app.getUser().isLoginLinkPresent()){
+    public void precondition() {
+        if (!app.getUser().isLoginLinkPresent()){
             app.getUser().clickOnSignOutButton();
         }
         app.getUser().clickOnLoginLink();
@@ -22,12 +23,13 @@ public class AddContactNegativeTests extends TestBase {
                 .setPassword(UserData.password));
         app.getUser().clickOnLoginButton();
     }
+
     @Test
     public void addContactWithInvalidPhone(){
         app.getContact().clickOnAddLink();
         app.getContact().fillContactForm(new Contact()
                 .setName(ContactData.name)
-                .setLastName(ContactData.lastName)
+                .setLastName(ContactData.LastName)
                 .setPhone("123456789")
                 .setEmail(ContactData.email)
                 .setAddress(ContactData.address)

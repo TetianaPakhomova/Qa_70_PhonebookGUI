@@ -21,22 +21,23 @@ public class AddContactTests extends TestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void precondition(){
-        if(!app.getUser().isLoginLinkPresent()){
+        if (!app.getUser().isLoginLinkPresent()){
             app.getUser().clickOnSignOutButton();
         }
+
         app.getUser().clickOnLoginLink();
         app.getUser().fillLoginRegisterForm(new User()
                 .setEmail(UserData.email)
                 .setPassword(UserData.password));
         app.getUser().clickOnLoginButton();
     }
+
     @Test(groups = "smoky")
     public void addContactPositiveTest(){
-
         app.getContact().clickOnAddLink();
         app.getContact().fillContactForm(new Contact()
                 .setName(ContactData.name)
-                .setLastName(ContactData.lastName)
+                .setLastName(ContactData.LastName)
                 .setPhone(ContactData.phone)
                 .setEmail(ContactData.email)
                 .setAddress(ContactData.address)
@@ -51,10 +52,9 @@ public class AddContactTests extends TestBase {
     }
 
 
-    @Test(dataProvider = "addNewContact",dataProviderClass = MyDataProviders.class)
-    public void addContactPositiveFromDataProviderTest(String name,String lastName
-            ,String phone,String email, String address,String description){
-
+    @Test(dataProvider = "addNewContact", dataProviderClass = MyDataProviders.class)
+    public void addContactPositiveFromDataProviderTest(String name, String lastName, String phone
+            , String email, String address, String description){
         app.getContact().clickOnAddLink();
         app.getContact().fillContactForm(new Contact()
                 .setName(name)
@@ -67,9 +67,9 @@ public class AddContactTests extends TestBase {
         Assert.assertTrue(app.getContact().isContactCreateByName(name));
     }
 
-    @Test(dataProvider = "addNewContactFromCsv",dataProviderClass = MyDataProviders.class)
-    public void addContactPositiveFromDataProviderWithFileTest(Contact contact){
 
+    @Test(dataProvider = "addNewContactFromCsv", dataProviderClass = MyDataProviders.class)
+    public void addContactPositiveFromDataProviderWithFileTest(Contact contact){
         app.getContact().clickOnAddLink();
         app.getContact().fillContactForm(contact);
         app.getContact().clickOnSaveButton();

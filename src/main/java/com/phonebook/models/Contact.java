@@ -1,8 +1,6 @@
 package com.phonebook.models;
 
 public class Contact {
-
-
     private String name;
     private String lastName;
     private String phone;
@@ -38,8 +36,8 @@ public class Contact {
     public Contact setDescription(String description) {
         this.description = description;
         return this;
-
     }
+
 
     public String getName() {
         return name;
@@ -63,18 +61,13 @@ public class Contact {
 
     public String getDescription() {
         return description;
-
     }
 
     @Override
     public String toString() {
         return "Contact{" +
                 "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", description='" + description + '\'' +
                 '}';
     }
 }

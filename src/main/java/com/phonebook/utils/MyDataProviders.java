@@ -12,26 +12,26 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MyDataProviders {
+
     @DataProvider
     public Iterator<Object[]> addNewContact(){
 
         List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"Karl","Adam","1234567891","Test@gm.com","Berlin","QA"});
-        list.add(new Object[]{"Kris","Adam","1234567892","Test@gm.com","Berlin","QA"});
-        list.add(new Object[]{"Alex","Adam","1234567893","Test@gm.com","Berlin","QA"});
-
+        list.add(new Object[]{"Karl", "Adam", "123456789025", "Test@gm.com", "Berlin", "QA"});
+        list.add(new Object[]{"Kris", "Adam", "123456789016", "Test@gm.com", "Berlin", "QA"});
+        list.add(new Object[]{"Alex", "Adam", "123456789012375", "Test@gm.com", "Berlin", "QA"});
         return list.iterator();
     }
+
     @DataProvider
     public Iterator<Object[]> addNewContactFromCsv() throws IOException {
-        List<Object[]>list = new ArrayList<>();
+        List<Object[]>list= new ArrayList<>();
         BufferedReader reader = new BufferedReader(
                 new FileReader(new File("src/test/resources/ContactData.csv")));
         String line = reader.readLine();
-        while (line!= null) {
+        while (line!=null) {
             String[] split = line.split(",");
-            list.add(new Object[]{new Contact()
-                    .setName(split[0])
+            list.add(new Object[]{new Contact().setName(split[0])
                     .setLastName(split[1])
                     .setPhone(split[2])
                     .setEmail(split[3])

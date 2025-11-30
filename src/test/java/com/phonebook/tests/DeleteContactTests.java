@@ -13,7 +13,7 @@ public class DeleteContactTests extends TestBase {
 
     @BeforeMethod
     public void precondition(){
-        if(!app.getUser().isLoginLinkPresent()){
+        if (!app.getUser().isLoginLinkPresent()){
             app.getUser().clickOnSignOutButton();
         }
         app.getUser().clickOnLoginLink();
@@ -23,23 +23,28 @@ public class DeleteContactTests extends TestBase {
         app.getUser().clickOnLoginButton();
 
         app.getContact().clickOnAddLink();
+
+
         app.getContact().fillContactForm(new Contact()
                 .setName(ContactData.name)
-                .setLastName(ContactData.lastName)
+                .setLastName(ContactData.LastName)
                 .setPhone(ContactData.phone)
                 .setEmail(ContactData.email)
                 .setAddress(ContactData.address)
                 .setDescription(ContactData.description));
+
+
         app.getContact().clickOnSaveButton();
     }
     @Test
     public void deleteContactTest(){
 
-        int sizeBefore = app.getContact().sizeOfContacts();
+        int sizeBefore = app.getContact().sizeofContacts();
+        //click on Card
         app.getContact().removeContact();
+        app.getContact().pause(500);
 
-        app.getContact().pause(1000);
-        int sizeAfter = app.getContact().sizeOfContacts();
+        int sizeAfter = app.getContact().sizeofContacts();
         Assert.assertEquals(sizeAfter,sizeBefore-1);
     }
 

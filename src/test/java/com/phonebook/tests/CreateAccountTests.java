@@ -1,4 +1,5 @@
 package com.phonebook.tests;
+
 import com.phonebook.core.TestBase;
 import com.phonebook.data.UserData;
 import com.phonebook.models.User;
@@ -12,22 +13,29 @@ public class CreateAccountTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition(){
-        if(!app.getUser().isLoginLinkPresent()){
+        if (!app.getUser().isLoginLinkPresent()){
             app.getUser().clickOnSignOutButton();
         }
     }
+
     @Test(enabled = false)
     public void newUserRegisterPositiveTest(){
-        //int i =(int)((System.currentTimeMillis()/1000)%3600);
+
+        //int i =(int) ((System.currentTimeMillis()/1000)%3600);
+
         //click on Login Link
         app.getUser().clickOnLoginLink();
+
         //enter email
-        app.getUser().fillLoginRegisterForm(new User()
+        app. getUser().fillLoginRegisterForm(new User()
                 .setEmail(UserData.email)
                 .setPassword(UserData.password));
+
         //click on Registration button
         app.getUser().clickOnRegistrationButton();
-        //assert SigOut button present
+
+
+        //Assert SignOut button present
         Assert.assertTrue(app.getUser().isSignOutButtonPresent());
     }
 
@@ -41,8 +49,6 @@ public class CreateAccountTests extends TestBase {
         softAssert.assertTrue(app.getUser().isAlertPresent());
         softAssert.assertTrue(app.getUser().isErrorMessagePresent());
         softAssert.assertAll();
-
     }
-
 
 }

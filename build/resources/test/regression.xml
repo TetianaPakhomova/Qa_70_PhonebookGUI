@@ -5,7 +5,7 @@
         <classes>
             <class name="com.phonebook.tests.HomePageTests"/>
             <class name="com.phonebook.tests.LoginTests">
-                <parameter name="email" value="manuel67@gmail.com"></parameter>
+                <parameter name="email" value="mitycan38@gmail.com"></parameter>
                 <parameter name="password" value="Pp1234567!"></parameter>
                 <methods>
                     <exclude name=".*Negative.*"/>

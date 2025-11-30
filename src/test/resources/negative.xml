@@ -4,10 +4,10 @@
     <test name="Negative">
         <classes>
             <class name="com.phonebook.tests.LoginTests">
-                <methods>
-                    <include name=".*Negative.*"/>
-                </methods>
-                    </class>
+            <methods>
+                <include name=".*Negative.*"/>
+            </methods>
+            </class>
             <class name="com.phonebook.tests.CreateAccountTests"/>
             <class name="com.phonebook.tests.AddContactNegativeTests"/>
         </classes>

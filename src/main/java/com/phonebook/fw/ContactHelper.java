@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ContactHelper extends BaseHelper {
-
     public ContactHelper(WebDriver driver) {
         super(driver);
     }
@@ -20,15 +19,20 @@ public class ContactHelper extends BaseHelper {
 
     public void fillContactForm(Contact contact) {
         type(By.xpath("//input[1]"), contact.getName());
+
         //enter lastname
         type(By.xpath("//input[2]"), contact.getLastName());
+
         //enter phone
         type(By.xpath("//input[3]"), contact.getPhone());
+
         //enter email
         type(By.xpath("//input[4]"), contact.getEmail());
+
         //enter address
         type(By.xpath("//input[5]"), contact.getAddress());
-        //enter description
+
+        //description
         type(By.xpath("//input[6]"), contact.getDescription());
     }
 
@@ -40,12 +44,12 @@ public class ContactHelper extends BaseHelper {
         return verifyText(text, By.cssSelector("h2"));
     }
     public boolean isContactCreatedByPhone(String text){
-        return verifyText(text,By.cssSelector("h3"));
+        return verifyText(text, By.cssSelector("h3"));
     }
 
     public boolean verifyText(String text, By locator) {
         List<WebElement> contacts = driver.findElements(locator);
-        for (WebElement element:contacts) {
+        for (WebElement element:contacts){
             if (element.getText().contains(text))
                 return true;
         }
@@ -55,18 +59,16 @@ public class ContactHelper extends BaseHelper {
     public void removeContact() {
         //click on Card
         click(By.cssSelector(".contact-item_card__2SOIM"));
-        //click on Remove button
+
+        //Click on Remove
         click(By.xpath("//button[.='Remove']"));
     }
 
-    public int sizeOfContacts() {
-        if(isElementPresent(By.cssSelector(".contact-item_card__2SOIM"))){
-            return driver.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
-        }
+    public int sizeofContacts() {
+       if(isElementPresent(By.cssSelector(".contact-item_card__2SOIM"))){
+           return driver.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
+       }
         return 0;
     }
 
-    public boolean isContactCreateByPhone(String phone) {
-        return false;
-    }
 }

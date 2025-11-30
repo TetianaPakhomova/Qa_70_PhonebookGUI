@@ -15,9 +15,10 @@ public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
+
     @BeforeMethod(alwaysRun = true)
-    public void startTest(Method method,Object[] p){
-        logger.info("Start test {} whit data: {}",method.getName(), Arrays.asList(p));
+    public void startTest(Method method, Object[] p){
+        logger.info("Start test {} with data: {}", method.getName(), Arrays.asList(p));
     }
 
     @BeforeSuite(alwaysRun = true)
@@ -27,16 +28,17 @@ public class TestBase {
 
     @AfterMethod(alwaysRun = true)
     public void stopTest(ITestResult result){
-        if(result.isSuccess()){
+        if (result.isSuccess()){
             logger.info("PASSED: {}", result.getMethod().getMethodName());
+
         }else {
-            logger.error("FAILED: {} Screenshot: {}", result.getMethod()
-                    .getMethodName(),app.getContact()
+            logger.error("FAILED: {} Screenshot: {}", result.getMethod().getMethodName(), app.getContact()
                     .takeScreenshot());
         }
-        logger.info("Stop test");
-        logger.info("************************************");
+        logger.info("Stop Test");
+        logger.info("************************************************");
     }
+
     @AfterSuite(alwaysRun = true)
     public void tearDown(){
         app.stop();
@@ -48,6 +50,6 @@ public class TestBase {
     @AfterGroups("smoky")
     public void stopSmokyTestGroup(){
         logger.info("Stop smoky test");
-
     }
+
 }

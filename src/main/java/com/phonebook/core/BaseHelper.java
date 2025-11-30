@@ -11,29 +11,29 @@ import java.time.Duration;
 
 public class BaseHelper {
 
-    protected WebDriver driver;
+   protected WebDriver driver;
 
 
     public BaseHelper(WebDriver driver) {
         this.driver = driver;
-
     }
 
-    public boolean isElementPresent(By locator) {
-        return driver.findElements(locator).size() > 0;
+    public boolean isElementPresent(By locator){
+        return driver.findElements(locator).size()>0;
+    }
+
+    public void type(By locator, String text) {
+        if (text!=null) {
+            click(locator);
+            driver.findElement(locator).clear();
+            driver.findElement(locator).sendKeys(text);
+        }
     }
 
     public void click(By locator) {
         driver.findElement(locator).click();
     }
 
-    public void type(By locator, String text) {
-        if (text != null) {
-            click(locator);
-            driver.findElement(locator).clear();
-            driver.findElement(locator).sendKeys(text);
-        }
-    }
 
     public boolean isAlertPresent() {
         Alert alert = getWait(20)
@@ -44,22 +44,22 @@ public class BaseHelper {
             driver.switchTo().alert().accept();
             return true;
         }
+
     }
 
     public WebDriverWait getWait(int seconds) {
         return new WebDriverWait(driver, Duration.ofSeconds(seconds));
     }
 
-    public void pause(int millis) {
+    public void pause(int millis){
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-    public String takeScreenshot() {
+    public String takeScreenshot(){
         try {
             Alert alert = getWait(10).until(ExpectedConditions.alertIsPresent());
             alert.accept();
@@ -68,17 +68,13 @@ public class BaseHelper {
 
         File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File screenshot = new File("screenshots/screen-" + System.currentTimeMillis() + ".png");
-
         try {
-            Files.copy(tmp, screenshot);
+            Files.copy(tmp,screenshot);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return screenshot.getAbsolutePath();
     }
 
-    public boolean isContactCreateByName(String name) {
 
-        return false;
-    }
 }
